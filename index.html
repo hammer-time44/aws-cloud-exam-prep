@@ -1,378 +1,47 @@
-<title>Cloud PYQ Planner</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-/* Layout: ChatGPT-style shell. Left rail lists modules like chat history; the main pane is the "cloud" box from the sketch, with m1-m8 tabs along its top edge and priority tables below. Dark is the default. */
-:root {
-  --bg: #212121;
-  --rail: #171717;
-  --surface: #2a2a2a;
-  --line: #3a3a3a;
-  --fg: #ececec;
-  --muted: #a1a1a1;
-  --hover: #2f2f2f;
-  --accent: #10a37f;
-  --p1-bg: #12301f;
-  --p1-fg: #5fd38d;
-  --p2-bg: #3a2214;
-  --p2-fg: #ff8a4c;
-  --vh-fg: #ececec;
-  --hi-fg: #d4d4d4;
-  --md-fg: #9a9a9a;
-  --font-ui: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
-  color-scheme: dark;
-}
-:root[data-theme="light"] {
-  --bg: #ffffff;
-  --rail: #f7f7f8;
-  --surface: #f4f4f4;
-  --line: #e3e3e3;
-  --fg: #0d0d0d;
-  --muted: #6b6b6b;
-  --hover: #ececec;
-  --accent: #10a37f;
-  --p1-bg: #dcf5e6;
-  --p1-fg: #14753f;
-  --p2-bg: #fde6d6;
-  --p2-fg: #b4491a;
-  --vh-fg: #0d0d0d;
-  --hi-fg: #3b3b3b;
-  --md-fg: #777777;
-  color-scheme: light;
-}
-html, body { height: 100%; }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-ui);
-  font-size: 15px;
-  line-height: 1.5;
-  margin: 0;
-}
-* { box-sizing: border-box; }
-button, input { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.app { display: flex; height: 100%; min-width: 0; }
-
-/* rail */
-.rail {
-  width: 264px; flex: none; background: var(--rail);
-  display: flex; flex-direction: column; gap: 8px; min-width: 0;
-  padding-block: 12px;
-  padding-left: max(12px, env(safe-area-inset-left, 0px));
-  padding-right: 12px;
-}
-.rail-head { display: flex; align-items: center; gap: 10px; padding: 6px 8px 10px; font-weight: 600; }
-.logo { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; color: #fff; flex: none; }
-.rail-label { color: var(--muted); font-size: 12px; padding: 10px 10px 4px; }
-.mods { display: flex; flex-direction: column; gap: 2px; overflow-y: auto; min-height: 0; }
-.mod {
-  display: flex; align-items: center; gap: 8px; text-align: left;
-  background: none; border: 0; border-radius: 10px; padding: 9px 10px; cursor: pointer; min-width: 0;
-}
-.mod:hover { background: var(--hover); }
-.mod[aria-current="true"] { background: var(--hover); }
-.mod .k { color: var(--muted); font-size: 12px; width: 22px; flex: none; text-transform: lowercase; }
-.mod .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.rail-foot { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 10px 8px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-.avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--hover); display: grid; place-items: center; color: var(--fg); font-weight: 600; font-size: 12px; flex: none; }
-
-/* main */
-.main { flex: 1; min-width: 0; display: flex; flex-direction: column; height: 100%; }
-.top {
-  display: flex; align-items: center; gap: 8px; padding-block: 10px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-.model { font-size: 17px; font-weight: 600; padding: 6px 10px; border-radius: 10px; }
-.sp { flex: 1; }
-.icon-btn { background: none; border: 0; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; cursor: pointer; color: var(--muted); }
-.icon-btn:hover { background: var(--hover); color: var(--fg); }
-.menu-btn { display: none; }
-
-.scroll { flex: 1; overflow-y: auto; min-height: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.col { max-width: 860px; margin: 0 auto; padding-block: 8px 24px; }
-
-/* the cloud box */
-.cloud { border: 1.5px solid var(--line); border-radius: 22px; padding: 14px 16px 20px; min-width: 0; }
-.cloud-title { font-family: var(--font-hand); font-size: 40px; line-height: 1; text-align: center; margin: 2px 0 12px; font-weight: 600; letter-spacing: .01em; }
-.tabs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
-.tab {
-  flex: none; min-width: 64px; background: none; border: 1.5px solid var(--line); border-radius: 10px;
-  padding: 7px 14px; cursor: pointer; text-transform: lowercase; color: var(--muted); font-size: 13px;
-}
-.tab:hover { color: var(--fg); background: var(--hover); }
-.tab[aria-selected="true"] { color: var(--fg); border-color: var(--fg); }
-
-/* message */
-.msg { display: flex; gap: 12px; margin-top: 20px; min-width: 0; }
-.msg .logo { margin-top: 2px; }
-.body { flex: 1; min-width: 0; }
-h1 { font-size: 20px; line-height: 1.3; margin: 2px 0 6px; font-weight: 600; text-wrap: balance; }
-.sub { color: var(--muted); margin: 0 0 14px; }
-.chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; margin: 14px 0 4px; }
-.chip.p1 { background: var(--p1-bg); color: var(--p1-fg); }
-.chip.p2 { background: var(--p2-bg); color: var(--p2-fg); }
-.tbl { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14px; }
-th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); }
-th { font-weight: 600; font-size: 13px; }
-td:nth-child(2) { color: var(--hi-fg); }
-.pr { font-weight: 500; white-space: nowrap; }
-.pr.vh { color: var(--vh-fg); }
-.pr.hi { color: var(--hi-fg); }
-.pr.md { color: var(--md-fg); }
-.none { color: var(--muted); padding: 18px 0; }
-.stat { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
-.pill { font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
-
-/* composer */
-.composer-wrap { padding-top: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)); }
-.composer {
-  max-width: 860px; margin: 0 auto; display: flex; align-items: center; gap: 8px;
-  background: var(--surface); border-radius: 26px; padding: 6px 8px 6px 18px;
-}
-.composer input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; padding: 10px 0; }
-.composer input::placeholder { color: var(--muted); }
-.composer:focus-within { box-shadow: 0 0 0 2px var(--accent); }
-.send { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--fg); color: var(--bg); display: grid; place-items: center; cursor: pointer; flex: none; }
-
-.scrim { display: none; }
-
-@media (max-width: 760px) {
-  .menu-btn { display: grid; }
-  .rail {
-    position: fixed; z-index: 30; inset: 0 auto 0 0; transform: translateX(-100%);
-    transition: transform .2s ease; width: min(300px, 84vw);
-    padding-top: max(12px, env(safe-area-inset-top, 0px));
-  }
-  .app.open .rail { transform: none; }
-  .app.open .scrim { display: block; position: fixed; inset: 0; z-index: 20; background: rgba(0,0,0,.5); }
-  .top { padding-top: max(10px, env(safe-area-inset-top, 0px)); padding-left: max(12px, env(safe-area-inset-left, 0px)); }
-  .scroll { padding-left: max(16px, env(safe-area-inset-left, 0px)); }
-  .composer-wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); }
-  .cloud-title { font-size: 34px; }
-  .msg .logo { display: none; }
-}
-@media (prefers-reduced-motion: reduce) { .rail { transition: none; } }
-</style>
-
-<div class="app" id="app">
-  <main class="main">
-    <div class="top">
-      <span class="model">AWS Cloud</span>
-      <span class="sp"></span>
-      <button class="icon-btn" id="theme" aria-label="Switch to light mode" title="Toggle theme"></button>
-    </div>
-
-    <div class="scroll">
-      <div class="col">
-        <section class="cloud" aria-label="cloud">
-          <div class="cloud-title">cloud</div>
-          <div class="tabs" id="tabs" role="tablist" aria-label="Modules m1 to m8"></div>
-          <div class="msg">
-            <span class="logo" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.6-7.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7z"/></svg>
-            </span>
-            <div class="body" id="body" role="tabpanel"></div>
-          </div>
-        </section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AWS Cloud Computing: Module-wise PYQ Priority Planner</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <main class="main">
+      <div class="top">
+        <span class="model">AWS Cloud</span>
+        <span class="sp"></span>
+        <button class="icon-btn" id="theme" aria-label="Switch to light mode" title="Toggle theme"></button>
       </div>
-    </div>
 
-    <div class="composer-wrap">
-      <label class="composer" for="q">
-        <input id="q" type="search" placeholder="Search topics in this module, e.g. VPC, Aurora, KMS" autocomplete="off">
-        <button class="send" type="button" id="clear" aria-label="Clear search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </button>
-      </label>
-    </div>
-  </main>
-</div>
+      <div class="scroll" id="scroll">
+        <div class="col">
+          <section class="cloud" aria-label="cloud">
+            <div class="cloud-head">
+              <div class="hd-l"><button class="back-btn" id="back" type="button" hidden>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                cloud</button></div>
+              <div class="cloud-title" id="title">cloud</div>
+              <div class="hd-r"><button class="fat-btn" id="fatBtn" type="button" aria-label="Open FAT question papers">fat</button></div>
+            </div>
+            <div class="tabs" id="tabs" role="tablist"></div>
+            <div class="body" id="body" role="tabpanel"><p class="none">Loading&hellip;</p></div>
+          </section>
+        </div>
+      </div>
 
-<script>
-var MODS = [
-  { k: "m1", t: "AWS Cloud Foundations & IAM",
-    p1: [
-      ["IAM Users, Groups and Policies", "Appeared in 4 papers", "Very High"],
-      ["IAM Roles and Best Practices", "Repeated IAM questions", "Very High"],
-      ["IAM Policy Structure and Permissions", "Direct policy-writing question", "Very High"],
-      ["AWS Shared Responsibility Model", "Appeared in 2 papers", "Very High"]
-    ],
-    p2: [
-      ["AWS Global Infrastructure", "Appeared in architecture questions", "High"],
-      ["Introduction to Cloud Computing", "Direct 10-mark question in G2", "High"]
-    ] },
-  { k: "m2", t: "AWS Compute & Storage Services",
-    p1: [
-      ["Amazon EC2 – Instance Types and Lifecycle", "Appeared in multiple papers", "Very High"],
-      ["Auto Scaling", "Repeated in architecture questions", "Very High"],
-      ["Elastic Load Balancing (ELB)", "Appeared in multiple architecture questions", "Very High"],
-      ["Amazon S3 and Storage Classes", "Repeated storage-related questions", "Very High"]
-    ],
-    p2: [
-      ["Amazon EFS", "Storage architecture question in G1", "High"],
-      ["Amazon EBS", "Part of EC2 and storage preparation", "High"],
-      ["S3 Lifecycle Policies", "Storage cost optimization question in A2", "High"],
-      ["Amazon Glacier", "Archived storage scenarios", "Medium"],
-      ["EC2 Pricing Models", "Part of EC2 preparation", "Medium"]
-    ] },
-  { k: "m3", t: "AWS Networking & Content Delivery",
-    p1: [
-      ["VPC Architecture", "Appeared in 5 papers", "Very High"],
-      ["Public and Private Subnets", "Repeated across papers", "Very High"],
-      ["Route Tables and Internet Gateway", "Repeated VPC architecture questions", "Very High"],
-      ["NAT Gateway", "Repeated VPC architecture questions", "Very High"],
-      ["Security Groups vs NACL", "Direct comparison / design questions", "Very High"]
-    ],
-    p2: [
-      ["VPC Peering", "Appeared in VPC connectivity scenario", "High"],
-      ["AWS Direct Connect", "Part of networking syllabus", "Medium"],
-      ["Amazon CloudFront", "Appeared in global architecture question", "High"]
-    ] },
-  { k: "m4", t: "AWS Database Services",
-    p1: [
-      ["RDS Multi-AZ Deployment", "Appeared in 4 papers", "Very High"],
-      ["RDS Read Replicas", "Appeared in 4 papers", "Very High"],
-      ["Multi-AZ vs Read Replicas", "Repeated architecture and comparison questions", "Very High"],
-      ["Amazon Aurora", "Appeared in multiple papers", "Very High"],
-      ["Amazon DynamoDB", "Appeared in multiple papers", "Very High"]
-    ],
-    p2: [
-      ["Aurora vs DynamoDB", "Direct database selection question", "High"],
-      ["DynamoDB Streams", "Syllabus topic; no clear standalone question", "Medium"],
-      ["RDS High Availability and Read Scalability", "Repeated scenario-based questions", "High"]
-    ] },
-  { k: "m5", t: "AWS Management Tools & Cost Management",
-    p1: [
-      ["AWS CloudWatch", "Appeared in multiple papers", "Very High"],
-      ["AWS CloudTrail", "Appeared in multiple papers", "Very High"],
-      ["AWS Config", "Appeared in multiple papers", "Very High"],
-      ["AWS Budgets", "Appeared in 2 papers", "Very High"],
-      ["AWS Trusted Advisor", "Appeared in 2 papers", "Very High"]
-    ],
-    p2: [
-      ["AWS Systems Manager", "Appeared in 2 papers", "High"],
-      ["Cost Monitoring and Alerts", "Repeated scenario-based questions", "High"],
-      ["AWS Free Tier", "Appeared in A2", "Medium"],
-      ["AWS Billing and Account Management", "Related to budget management", "Medium"]
-    ] },
-  { k: "m6", t: "AWS Security & Compliance",
-    p1: [
-      ["AWS WAF", "Appeared in multiple papers", "Very High"],
-      ["AWS Shield", "Appeared in 3 papers", "Very High"],
-      ["AWS KMS", "Appeared in multiple papers", "Very High"],
-      ["DDoS Protection", "Repeated Shield-related questions", "Very High"],
-      ["SQL Injection and XSS Protection", "Direct WAF scenario questions", "Very High"]
-    ],
-    p2: [
-      ["Encryption at Rest and in Transit", "Appeared in security scenarios", "High"],
-      ["Shared Responsibility Model", "Repeated across papers", "High"],
-      ["AWS Security Best Practices", "Integrated security questions", "High"]
-    ] },
-  { k: "m7", t: "AWS Application Integration & Architectural Best Practices",
-    p1: [
-      ["AWS Step Functions", "Appeared in 4 papers", "Very High"],
-      ["Amazon SQS", "Appeared in 2 papers", "Very High"],
-      ["Amazon SNS", "Appeared in 2 papers", "Very High"],
-      ["Amazon SWF", "Direct comparison question", "Very High"],
-      ["AWS Well-Architected Framework", "Appeared in 2 papers", "Very High"]
-    ],
-    p2: [
-      ["High Availability & Fault Tolerance", "Repeated in architecture questions", "High"],
-      ["Scalability & Elasticity", "Repeated in architecture questions", "High"],
-      ["Cost Optimization", "Multiple scenario-based questions", "High"],
-      ["AWS Architecture Design Principles", "Integrated architecture questions", "High"]
-    ] },
-  { k: "m8", t: "AWS Migration & Hybrid Architecture",
-    p1: [
-      ["AWS DMS", "Appeared in 4 papers", "Very High"],
-      ["AWS SMS", "Appeared in 3 papers", "Very High"],
-      ["AWS Snowball Edge", "Appeared in multiple papers", "Very High"],
-      ["AWS Snowball", "Repeated migration scenarios", "Very High"]
-    ],
-    p2: [
-      ["AWS Snowmobile", "Appeared in comparison questions", "High"],
-      ["Snowball vs Snowball Edge vs Snowmobile", "Direct comparison questions", "Very High"],
-      ["Database Migration – Minimal Downtime", "Repeated DMS scenarios", "High"],
-      ["Hybrid Cloud Architecture", "Appeared in connectivity and migration scenarios", "High"]
-    ] }
-];
+      <div class="composer-wrap">
+        <label class="composer" for="q">
+          <input id="q" type="search" autocomplete="off">
+          <button class="send" type="button" id="clear" aria-label="Clear search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </button>
+        </label>
+      </div>
+    </main>
+  </div>
 
-var app = document.getElementById("app");
-var tabsEl = document.getElementById("tabs");
-var bodyEl = document.getElementById("body");
-var q = document.getElementById("q");
-var cur = 0;
-
-function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-function cls(p) { return p === "Very High" ? "vh" : p === "High" ? "hi" : "md"; }
-
-function table(rows, importance) {
-  var h = '<div class="tbl"><table><thead><tr><th>Topic</th><th>PYQ importance</th><th>Priority</th></tr></thead><tbody>';
-  rows.forEach(function (r) {
-    h += "<tr><td>" + esc(r[0]) + "</td><td>" + esc(r[1]) + '</td><td class="pr ' + cls(r[2]) + '">' + esc(r[2]) + "</td></tr>";
-  });
-  return h + "</tbody></table></div>";
-}
-
-function filt(rows, term) {
-  if (!term) return rows;
-  return rows.filter(function (r) { return (r[0] + " " + r[1] + " " + r[2]).toLowerCase().indexOf(term) !== -1; });
-}
-
-function render() {
-  var m = MODS[cur];
-  var term = q.value.trim().toLowerCase();
-  var a = filt(m.p1, term), b = filt(m.p2, term);
-  var h = "<h1>" + m.k.toUpperCase() + " – " + esc(m.t) + "</h1>";
-  h += '<div class="stat"><span class="pill">' + m.p1.length + " must prepare</span><span class=\"pill\">" + m.p2.length + " important</span></div>";
-  if (a.length) h += '<span class="chip p1">Priority 1 – Must prepare</span>' + table(a);
-  if (b.length) h += '<span class="chip p2">Priority 2 – Important</span>' + table(b);
-  if (!a.length && !b.length) h += '<p class="none">No topics in ' + m.k.toUpperCase() + ' match “' + esc(q.value.trim()) + '”.</p>';
-  bodyEl.innerHTML = h;
-  bodyEl.setAttribute("aria-label", m.k + " " + m.t);
-  Array.prototype.forEach.call(tabsEl.children, function (t, i) { t.setAttribute("aria-selected", i === cur ? "true" : "false"); });
-}
-
-function go(i, fromHash) {
-  cur = i;
-  if (!fromHash) { try { location.hash = MODS[i].k; } catch (e) {} }
-  app.classList.remove("open");
-  render();
-}
-
-MODS.forEach(function (m, i) {
-  var t = document.createElement("button");
-  t.className = "tab"; t.type = "button"; t.setAttribute("role", "tab"); t.textContent = m.k;
-  t.onclick = function () { go(i); };
-  tabsEl.appendChild(t);
-});
-
-function fromHash() {
-  var h = (location.hash || "").replace("#", "");
-  for (var i = 0; i < MODS.length; i++) if (MODS[i].k === h) { go(i, true); return; }
-  go(0, true);
-}
-window.addEventListener("hashchange", fromHash);
-q.addEventListener("input", render);
-document.getElementById("clear").onclick = function () { q.value = ""; render(); q.focus(); };
-
-var themeBtn = document.getElementById("theme");
-var SUN = '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-var MOON = '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
-function setTheme(t) {
-  var root = document.documentElement;
-  if (t === "light") root.setAttribute("data-theme", "light"); else root.removeAttribute("data-theme");
-  themeBtn.innerHTML = t === "light" ? MOON : SUN;
-  themeBtn.setAttribute("aria-label", t === "light" ? "Switch to dark mode" : "Switch to light mode");
-  try { localStorage.setItem("cloud-theme", t); } catch (e) {}
-}
-themeBtn.onclick = function () { setTheme(document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light"); };
-var saved = "dark";
-try { saved = localStorage.getItem("cloud-theme") || "dark"; } catch (e) {}
-setTheme(saved === "light" ? "light" : "dark");
-fromHash();
-</script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

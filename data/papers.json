@@ -1,0 +1,851 @@
+[
+  {
+    "id": "A1",
+    "exam": "November 2025",
+    "course": "BCSE355L – Cloud Architecture Design",
+    "slot": "A1+TA1",
+    "questions": [
+      {
+        "number": 1,
+        "parts": [
+          {
+            "label": "",
+            "text": "A FinTech company is planning to move its payment processing system to AWS. Explain how the AWS Shared Responsibility Model influences security design decisions during migration. Examine the security tasks handled by AWS and those handled by the customer.",
+            "co": "CO1",
+            "bl": "BL3",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "parts": [
+          {
+            "label": "",
+            "text": "Your client’s web platform faces unpredictable traffic spikes. Propose an approach that automatically adjusts the computing resources and ensures requests are distributed evenly without overprovisioning. Explain how your design maintains cost efficiency.",
+            "co": "CO1",
+            "bl": "BL4",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "parts": [
+          {
+            "label": "",
+            "text": "Your company must deploy a multi-tier application across public and private subnets to enhance security. Design a VPC architecture that includes route tables, NAT gateways, and security groups. Explain how network isolation and controlled internet access are achieved.",
+            "co": "CO4",
+            "bl": "BL4",
+            "modules": [
+              "m3"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "parts": [
+          {
+            "label": "",
+            "text": "A data analytics startup is evaluating both Amazon RDS and Amazon DynamoDB for handling transactional and analytical workloads. Recommend the suitable database. (The scan is unclear in this question; the wording may differ slightly.)",
+            "co": "CO4",
+            "bl": "BL4",
+            "modules": [
+              "m4"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "A healthcare analytics platform must detect unauthorized access and API misuse. Explain how you would configure AWS CloudWatch, CloudTrail, and SNS to automate security monitoring and alerting.",
+            "co": "CO4",
+            "bl": "BL5",
+            "modules": [
+              "m5"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "A government cloud setup requires continuous configuration auditing and auto-remediation. Design a compliance workflow using AWS Config, Systems Manager, and Lambda for remediation triggers.",
+            "co": "CO4",
+            "bl": "BL5",
+            "modules": [
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "parts": [
+          {
+            "label": "",
+            "text": "During a security audit, several data repositories were found unencrypted, and web applications were being targeted by frequent traffic bursts. Suggest a layered security design that addresses data protection, identity control, and threat prevention.",
+            "co": "CO2",
+            "bl": "BL4",
+            "modules": [
+              "m6"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "parts": [
+          {
+            "label": "",
+            "text": "A large-scale retail enterprise struggles with high AWS costs despite stable workloads. Apply the Well-Architected Framework’s Cost Optimization Pillar to identify possible architectural misconfigurations and propose three actionable recommendations with justifications.",
+            "co": "CO3",
+            "bl": "",
+            "modules": [
+              "m7",
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "Your organization is migrating databases from on-premises Oracle to AWS Aurora. Explain the steps and architectural considerations of AWS Database Migration Service (DMS) to ensure minimal downtime and data consistency.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m8",
+              "m4"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "A media company needs to migrate 50 TB of archived video files from a remote offline site. Demonstrate how AWS Snowball Edge can be used securely and efficiently for this purpose, including transfer, encryption, and import stages.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m8"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "parts": [
+          {
+            "label": "",
+            "text": "Your project team frequently exceeds the monthly budget for cloud resources. Develop a financial control plan that enables real-time tracking, proactive alerts, and optimization recommendations to prevent overruns.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "parts": [
+          {
+            "label": "",
+            "text": "Design a highly available, fault-tolerant, and secure multi-tier e-commerce application architecture on AWS. Specify the exact services used (compute, networking, database, storage, monitoring, and security) and justify how your design aligns with AWS best practices for reliability, scalability, and security.",
+            "co": "CO4",
+            "bl": "BL6",
+            "modules": [
+              "m7",
+              "m2",
+              "m3",
+              "m4",
+              "m6"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "A2",
+    "exam": "November 2025",
+    "course": "BCSE355L – Cloud Architecture Design",
+    "slot": "A2+TA2",
+    "questions": [
+      {
+        "number": 1,
+        "parts": [
+          {
+            "label": "",
+            "text": "A healthcare analytics company named HealthSync wants to migrate its patient data storage and analysis platform to AWS. Explain how the AWS Identity and Access Management (IAM) service helps HealthSync to implement a secure access control strategy in the cloud. Give two examples of IAM features that enhance security.",
+            "co": "CO1",
+            "bl": "BL3",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "parts": [
+          {
+            "label": "",
+            "text": "A video streaming startup named Streamify plans to host its video encoding and storage system on AWS. The company expects fluctuating traffic: high during peak hours and low at night. Explain which compute services and features you would use to handle variable workloads, and which storage services and policies you would apply for cost optimization.",
+            "co": "CO1",
+            "bl": "BL4",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "parts": [
+          {
+            "label": "",
+            "text": "Your company is building a secure and high-availability web application on AWS that must serve users from multiple regions. The application should include public-facing web servers, private application and database tiers, and global content delivery. As an AWS Solutions Architect, design a complete AWS network architecture to meet these requirements and describe how they work together to ensure security, scalability, and performance.",
+            "co": "CO4",
+            "bl": "BL4",
+            "modules": [
+              "m3"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "parts": [
+          {
+            "label": "",
+            "text": "You are the Cloud Architect for a global ride-sharing app. The platform uses Amazon Aurora PostgreSQL for relational data (user profiles, rides, payments) and DynamoDB for real-time location tracking and session management. During peak hours, the system experiences high read/write traffic, especially for location updates and ride-matching. Design a database architecture using Aurora and DynamoDB to ensure high availability, fault tolerance, scalability, and cost optimization.",
+            "co": "CO4",
+            "bl": "BL4",
+            "modules": [
+              "m4"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "Your company has observed a significant increase in AWS costs and incidents of misconfigured resources and unauthorized API calls, affecting performance and security. Explain the AWS services you would use together to detect and respond to unauthorized or misconfigured resource changes, and monitor system performance.",
+            "co": "CO4",
+            "bl": "BL5",
+            "modules": [
+              "m5"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "You are a cloud administrator for a startup that migrated its dev and test environments to AWS. After three months, unexpected AWS charges appear due to exceeded Free Tier limits and inappropriate provisioning. Explain how AWS Budgets can monitor spending to send alerts and how AWS Trusted Advisor helps to optimize costs.",
+            "co": "CO4",
+            "bl": "BL5",
+            "modules": [
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "parts": [
+          {
+            "label": "",
+            "text": "You are the Lead Cloud Security Architect for a financial services company handling sensitive customer data under regulatory compliance (PCI-DSS, GDPR). After migrating to AWS, audits revealed: publicly accessible S3 buckets; a web app vulnerable to SQL injection and XSS; no centralized key management. How can AWS WAF and AWS Shield protect against SQL injection, XSS, and DDoS? Propose a solution using AWS KMS to manage encryption keys across services like S3 and RDS.",
+            "co": "CO2",
+            "bl": "BL4",
+            "modules": [
+              "m6"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "parts": [
+          {
+            "label": "",
+            "text": "An application is hosted entirely on AWS and must meet strict compliance requirements, deliver high availability, and scale dynamically during peak hours. Recently, the platform experienced performance degradation, unexpected cost spikes, and a security audit failure due to misconfigured resources. Explain how the AWS Well-Architected Framework can guide the re-design of this platform with at least three of its pillars relevant to the scenario.",
+            "co": "CO3",
+            "bl": "BL5",
+            "modules": [
+              "m7"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "The company wants to migrate its databases with minimal downtime and lift-and-shift its application servers to AWS. They also want to ensure secure, reliable connectivity between on-premises and cloud environments. Describe how AWS Server Migration Service (SMS) facilitates the migration of on-premises Windows servers to AWS.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m8"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "A multinational media company needs to transfer over 10 petabytes of archived video content from multiple global data centers with limited bandwidth at some sites, and likely to process some data locally before uploading. Compare AWS Snowball, Snowball Edge, and Snowmobile in terms of capacity, use cases, and suitability for different migration scenarios.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m8"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "parts": [
+          {
+            "label": "",
+            "text": "The application uses Amazon RDS for PostgreSQL to store relational data. To ensure high availability and disaster recovery, the team has enabled Multi-AZ deployments. However, during peak hours, users report slow response times when accessing reports and dashboards that involve heavy read operations. Propose an architecture using both Multi-AZ and Read Replicas to balance availability, performance, and compliance.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m4"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "parts": [
+          {
+            "label": "",
+            "text": "You are designing a serverless order fulfillment system for an online bookstore. Orders must be queued for processing, customers notified via email/SMS, and backend services (payment, inventory, shipping) coordinated. How does Amazon SQS decouple components in the order pipeline? How can Amazon SNS send notifications to customers across multiple channels? How can AWS Step Functions coordinate payment, inventory, and shipping tasks?",
+            "co": "CO4",
+            "bl": "BL6",
+            "modules": [
+              "m7"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F1",
+    "exam": "November 2024",
+    "course": "BCSE355L – AWS Solutions Architect",
+    "slot": "F1+TF1",
+    "questions": [
+      {
+        "number": 1,
+        "parts": [
+          {
+            "label": "",
+            "text": "XYZ organization is planning to start their cloud premises at the south region. Assume yourself as a cloud administrator to carry out the network configuration, resource provisioning, infrastructure design and management. The organization aims to distribute the workload on the AWS cloud. Explore the necessary AWS services with a combined architecture for the administration and distribution of the organization data into the AWS cloud.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "parts": [
+          {
+            "label": "",
+            "text": "The security team of ABC company is very concerned about the vulnerability of the IAM administrator user accounts which have been used to configure all IAM features and accounts. Enumerate the steps that can be taken to lock down these accounts, explain the IAM policy and how it contributes to access control in AWS.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "parts": [
+          {
+            "label": "",
+            "text": "An organization is looking to establish its units in multiple regions. The company has multiple AWS accounts and resources across different units, and there is a need for centralized storage to manage the data easily. Considering these factors, explain the suitable AWS storage mechanism with its key features and brief working methodology. The factors are sharing data for applications, between instances, store and share for content management systems, and Big Data analytics.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "parts": [
+          {
+            "label": "i)",
+            "text": "Demonstrate the configuration of a Virtual Private Cloud with subnets and other resources with all the necessary step-by-step procedure.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m3"
+            ]
+          },
+          {
+            "label": "ii)",
+            "text": "Explain security groups and Network Access Control Lists used in a VPC.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m3"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "parts": [
+          {
+            "label": "",
+            "text": "Assume that you are a Solutions Architect at ABC Corporation, which uses a large database to manage client records. The company has to develop an application that requires high availability and scalability. The application is currently hosted on a cloud database service that has severe downtime and performance bottlenecks during peak usage times. The company aims to transfer its database to an AWS database service. As the solutions architect, identify the proper database service in AWS and design the database model that enhances the application’s availability and read scalability. Your solution should include a multi-AZ deployment for high availability.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m4"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "parts": [
+          {
+            "label": "",
+            "text": "A manufacturing company has been using AWS services for several years. It uses a significant amount of resources across multiple accounts in multiple regions. Recently, the company CEO noticed an unexpected spike in the monthly AWS billing. On closer investigation, the CEO identified several underutilized resources in some accounts and some services running in other regions that are irrelevant to the company. Give your suggestions to the CEO for cost optimization and easy identification of unwanted services and instances. Explain the specific steps or tools that could be used to solve these issues.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "parts": [
+          {
+            "label": "",
+            "text": "As a data center administrator, you are responsible for maintenance, monitoring website metrics in real time, recovery, infrastructure design and management. If an EC2 instance can be recovered from the data center, elaborate the steps to be carried out in the recovery process. Illustrate the same with a neat sketch.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m5",
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "parts": [
+          {
+            "label": "",
+            "text": "Identify and elaborate the working of AWS Shield, which protects against Distributed Denial of Service (DDoS) attacks. Provide an example for the same.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m6"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "Explain how you would design the system using Amazon Simple Queue Service (SQS) to manage the flow of orders. Describe the key SQS features that help in ensuring message durability and availability.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m7"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "Elaborate the serverless orchestration service that is used to create and manage multi-step application workflows in the cloud. Discuss the key aspects of microservices with states, activities and service tasks.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m7"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "An organisation is planning to migrate its on-premises setup to the cloud. Discuss the powerful AWS tool to accelerate and simplify the migration of your on-premises servers to AWS. Explain the key features of the AWS migration service with its pros.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m8"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "The technical manager of a media production company is filming a documentary in a distant area with spotty internet. The team produces several terabytes of raw HD video footage every day, which must be handled locally for editing before being moved to the AWS Cloud for additional processing, storage, and collaboration with teams in other areas. It is not feasible to upload the video directly to AWS because of the enormous volume of data and the restricted bandwidth. The company needs to do preliminary edits without depending on internet connectivity, so the footage must be processed on-site. Explain the specific requirements for local data processing and safe transport using AWS Snowball Edge.",
+            "co": "",
+            "bl": "",
+            "modules": [
+              "m8"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "G1",
+    "exam": "November 2025",
+    "course": "BCSE355L – Cloud Architecture Design",
+    "slot": "G1+TG1",
+    "questions": [
+      {
+        "number": 1,
+        "parts": [
+          {
+            "label": "",
+            "text": "A start-up aims to launch a global e-commerce platform, anticipating traffic from users across multiple continents. To ensure optimal performance, they require low latency, high availability, and minimal service interruptions. How can AWS Global Infrastructure support these objectives? Identify and explain the responsibilities of the AWS service provider and AWS customers that would help the company build a secure, resilient architecture.",
+            "co": "CO1",
+            "bl": "BL3",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "parts": [
+          {
+            "label": "",
+            "text": "A multinational company is migrating its monolithic application to AWS and wants to enforce least privilege for its developers and operations team. Explain in detail how IAM users, roles, policies, and groups can be designed to support secure, role-specific access and clear separation of duties across teams.",
+            "co": "CO1",
+            "bl": "BL2",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "parts": [
+          {
+            "label": "",
+            "text": "An organization is deploying its first cloud-based web application using Amazon EC2. To provision their infrastructure effectively, the team must gain a comprehensive understanding of EC2 instance types and the instance lifecycle. Provide a detailed explanation of the various EC2 instance families, their use cases, and the complete lifecycle of an EC2 instance, from launch to termination.",
+            "co": "CO4",
+            "bl": "BL1",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "parts": [
+          {
+            "label": "",
+            "text": "WebStream, a Content Management Service provider, needs a highly available and fault-tolerant platform. Their current setup, a single web server with attached storage, faces issues like single point of failure, poor scalability, and manual data sync. Recommend an AWS storage solution that addresses these limitations and explain in detail, highlighting its key features and how it ensures resilience, scalability, and automated data management.",
+            "co": "CO4",
+            "bl": "BL2",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "parts": [
+          {
+            "label": "",
+            "text": "Design a secure and scalable VPC architecture that includes public and private subnets, an Internet Gateway, a NAT Gateway, route tables, security groups and network ACLs, in your role as the cloud architect. Using a clear architecture diagram, explain how this setup ensures isolation, controlled access, and high availability across application tiers.",
+            "co": "CO4",
+            "bl": "BL3",
+            "modules": [
+              "m3"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "parts": [
+          {
+            "label": "",
+            "text": "A manufacturing firm wants to migrate its legacy on-premises e-commerce database to an AWS relational database for high availability and read scalability. Explain a database solution provided in AWS that improves application availability and optimizes read scalability across workloads with suitable architecture.",
+            "co": "CO4",
+            "bl": "BL3",
+            "modules": [
+              "m4"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "parts": [
+          {
+            "label": "",
+            "text": "Your organization suspects a potential security breach in its AWS environment. As the cloud security analyst, explain how AWS-native tools (CloudTrail, CloudWatch, and AWS Config) can be used together to investigate the incident, trace its root cause, and support resolution. Highlight how each tool contributes to activity tracking, anomaly detection, and configuration auditing during the investigation process.",
+            "co": "CO3",
+            "bl": "BL3",
+            "modules": [
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "parts": [
+          {
+            "label": "",
+            "text": "A media streaming company hosts its content delivery platform on AWS. During a major live event, the platform experiences a sudden surge in traffic, suspected to be a Distributed Denial of Service (DDoS) attack targeting its public-facing endpoints. As the cloud security engineer, identify and explain how AWS Shield protects against DDoS attacks.",
+            "co": "CO2",
+            "bl": "BL3",
+            "modules": [
+              "m6"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "A logistics company is building a real-time alerting system to notify customers and internal teams about shipment status updates, delays, and delivery confirmations. The solution must support multiple communication channels, ensure reliable message delivery, and enforce strict access controls. As the cloud architect, describe how Amazon Simple Notification Service (SNS) can be used to implement this solution.",
+            "co": "CO1",
+            "bl": "BL3",
+            "modules": [
+              "m7"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "An insurance company wants to automate its end-to-end claims processing workflow, which involves multiple interdependent tasks such as document ingestion, fraud detection, policy validation, and customer notification. These tasks must be executed both sequentially and in parallel, with built-in fault tolerance, retry logic, and scalable execution to handle fluctuating claim volumes. As the cloud solutions architect, how would you design a resilient and scalable workflow using AWS services to meet these requirements?",
+            "co": "CO1",
+            "bl": "BL3",
+            "modules": [
+              "m7"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "An automotive manufacturer needs to transfer 8 PB of high-resolution sensor and telemetry data collected from multiple global factories to AWS for centralized analytics and machine learning. The transfer must be completed within a short time frame, with strict requirements for data security, transport reliability, and operational efficiency. As the cloud infrastructure specialist, recommend the most suitable AWS Snow Family service for this migration with proper explanation. Compare it with other types of AWS Snow Family service.",
+            "co": "CO2",
+            "bl": "BL3",
+            "modules": [
+              "m8"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "A public university plans to migrate its on-premises data center, including web servers, application servers, and databases, to AWS, while maintaining a hybrid cloud model for compliance. As the cloud solutions architect, propose a migration strategy using AWS SMS for server workloads and AWS DMS for structured data, ensuring minimal downtime, security, and business continuity.",
+            "co": "CO2",
+            "bl": "BL3",
+            "modules": [
+              "m8"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "G2",
+    "exam": "November 2025",
+    "course": "BCSE355L – Cloud Architecture Design",
+    "slot": "G2+TG2",
+    "questions": [
+      {
+        "number": 1,
+        "parts": [
+          {
+            "label": "",
+            "text": "Explain cloud computing in line with the NIST definition, enumerate and briefly explain its five essential characteristics, describe three service models and four deployment models with appropriate examples, and state similarities between AWS and traditional on-premises IT infrastructure with a suitable diagram.",
+            "co": "CO1",
+            "bl": "BL1",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "parts": [
+          {
+            "label": "",
+            "text": "Describe the essential elements of any IAM policy and write down a policy for the following scenario: a single IAM policy that allows all actions on all the tables in DynamoDB except the table named “Table1” and allows all actions on all the objects in S3 except an object named “Object1.txt”.",
+            "co": "CO1",
+            "bl": "BL6",
+            "modules": [
+              "m1"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "parts": [
+          {
+            "label": "",
+            "text": "A small e-commerce site needs its web tier reachable from the internet, the database kept private, and automatic web-server failover across Availability Zones (AZs). With a neat diagram, explain how the Auto Scaling feature of AWS is used to handle the overload or failover of its web tier by a step-by-step procedure.",
+            "co": "CO4",
+            "bl": "BL4",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "parts": [
+          {
+            "label": "",
+            "text": "Explain in detail the nine-step process for launching an Amazon EC2 instance, describing the required options and decision choices at each step.",
+            "co": "CO4",
+            "bl": "BL3",
+            "modules": [
+              "m2"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "ShopGlobal is migrating its e-commerce platform to AWS. Due to compliance requirements, they must separate customer-facing web servers from backend payment processing systems into two different VPCs. Specification: VPC A “Web-VPC” (10.0.0.0/16), Public Subnet 10.0.1.0/24 (Web Servers ONLY); VPC B “Payment-VPC” (10.3.0.0/16), Private Subnet 10.3.1.0/24 (Payment Processors ONLY). With a neat diagram, design and explain these VPC architectures with appropriate network elements, subnets, and route tables that satisfy the following traffic requirements: internet users can access web servers (HTTP/HTTPS); web servers can initiate connections to payment processors; payment processors can respond to web server requests but cannot initiate connections to web servers; payment processors cannot receive any inbound connections from the internet, so internet users cannot directly access payment processors.",
+            "co": "CO4",
+            "bl": "BL3",
+            "modules": [
+              "m3"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "A manufacturing company is migrating its legacy inventory management system to AWS while maintaining connectivity to its on-premises corporate datacentre (192.168.10.0/24). Their AWS architecture includes a VPC (10.0.0.0/16) with both public and private subnets. The public subnet hosts a web application accessible to internet users, while the private subnet contains application servers that need to communicate with on-premises SQL databases in the corporate datacentre. The company demands a low-cost and faster set-up that would support encryption over the internet during the data transfer. With a neat diagram, design and explain the chosen network connectivity architecture with appropriate network elements, subnets, and route tables that would connect the on-premises datacentre with the AWS datacentre.",
+            "co": "CO4",
+            "bl": "BL3",
+            "modules": [
+              "m3"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "parts": [
+          {
+            "label": "",
+            "text": "You are the lead cloud architect for “GlobalStream,” a fast-growing video streaming platform. The application has a PostgreSQL database running on AWS RDS as its primary data store. You are facing two major issues. Performance during peak hours: every evening, your database experiences a massive spike in read traffic from users browsing the catalog, loading profiles, and reading reviews. Recovery Time Objective (RTO): during a recent scheduled maintenance in a single Availability Zone (AZ), the entire application was unavailable for 5 minutes. What specific AWS RDS feature or combination of features would you implement to cost-effectively solve both the read performance issue and the high-availability requirement simultaneously?",
+            "co": "CO4",
+            "bl": "BL2",
+            "modules": [
+              "m4"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "parts": [
+          {
+            "label": "",
+            "text": "A regulated fintech company runs 250 Linux EC2 instances across dev and prod in two AWS accounts and two Regions. All instances are in private subnets (no SSH/RDP allowed). Leadership requires: (1) define and track system configurations along with the capability to explore operational health insights and analysis; (2) automated remediation for critical issues (e.g. failed patch, high CPU, failed agent) with human approval when changes are risky; (3) formal change control with approvals and auditable records; and (4) a 24x7 incident response workflow with paging, runbook execution, and post-incident tracking. Explain the steps to integrate AWS Systems Manager to achieve the above-mentioned leadership requirements with a neat diagram.",
+            "co": "CO3",
+            "bl": "BL4",
+            "modules": [
+              "m5"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "parts": [
+          {
+            "label": "a)",
+            "text": "A healthcare application is deployed on AWS behind an Application Load Balancer. The application allows patients to schedule appointments, access medical records, and communicate with healthcare providers. During a security audit, the team discovers frequent SQL injection and cross-site scripting (XSS) attacks targeting the patient portal. The application needs to block these attacks while maintaining trusted traffic from patients and healthcare providers. Design a WAF-based solution that can distinguish between malicious attack patterns and legitimate complex medical queries that may contain similar character patterns to SQL commands, handle DDoS attacks, and filter out traffic from blacklisted IPs using appropriate sample WAF rules.",
+            "co": "CO2",
+            "bl": "BL4",
+            "modules": [
+              "m6"
+            ]
+          },
+          {
+            "label": "b)",
+            "text": "Compare and contrast the following with suitable diagrams: Client-Side Encryption – Client; Client-Side Encryption – S3; Server-Side Encryption – Client; Server-Side Encryption – S3.",
+            "co": "CO2",
+            "bl": "BL4",
+            "modules": [
+              "m6"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "parts": [
+          {
+            "label": "",
+            "text": "Compare and contrast AWS Simple Workflow Service and AWS Step Functions.",
+            "co": "CO1",
+            "bl": "BL5",
+            "modules": [
+              "m7"
+            ]
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "parts": [
+          {
+            "label": "",
+            "text": "You are tasked with migrating a 500 GB on-premises MySQL database, which supports a critical 24/7 customer-facing application, to an Amazon RDS for PostgreSQL instance to reduce operational overhead. The business has mandated a maximum downtime window of 15 minutes. The database schema has several incompatible data types and stored procedures that require transformation. How would you design the database migration strategy to ensure data consistency, handle the schema conversion, and achieve the minimal downtime objective?",
+            "co": "CO2",
+            "bl": "BL3",
+            "modules": [
+              "m8",
+              "m4"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

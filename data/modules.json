@@ -1,0 +1,391 @@
+[
+  {
+    "id": "m1",
+    "title": "AWS Cloud Foundations & IAM",
+    "priority1": [
+      {
+        "topic": "IAM Users, Groups and Policies",
+        "importance": "Appeared in 4 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "IAM Roles and Best Practices",
+        "importance": "Repeated IAM questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "IAM Policy Structure and Permissions",
+        "importance": "Direct policy-writing question",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Shared Responsibility Model",
+        "importance": "Appeared in 2 papers",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "AWS Global Infrastructure",
+        "importance": "Appeared in architecture questions",
+        "priority": "High"
+      },
+      {
+        "topic": "Introduction to Cloud Computing",
+        "importance": "Direct 10-mark question in G2",
+        "priority": "High"
+      }
+    ]
+  },
+  {
+    "id": "m2",
+    "title": "AWS Compute & Storage Services",
+    "priority1": [
+      {
+        "topic": "Amazon EC2 – Instance Types and Lifecycle",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Auto Scaling",
+        "importance": "Repeated in architecture questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Elastic Load Balancing (ELB)",
+        "importance": "Appeared in multiple architecture questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Amazon S3 and Storage Classes",
+        "importance": "Repeated storage-related questions",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "Amazon EFS",
+        "importance": "Storage architecture question in G1",
+        "priority": "High"
+      },
+      {
+        "topic": "Amazon EBS",
+        "importance": "Part of EC2 and storage preparation",
+        "priority": "High"
+      },
+      {
+        "topic": "S3 Lifecycle Policies",
+        "importance": "Storage cost optimization question in A2",
+        "priority": "High"
+      },
+      {
+        "topic": "Amazon Glacier",
+        "importance": "Archived storage scenarios",
+        "priority": "Medium"
+      },
+      {
+        "topic": "EC2 Pricing Models",
+        "importance": "Part of EC2 preparation",
+        "priority": "Medium"
+      }
+    ]
+  },
+  {
+    "id": "m3",
+    "title": "AWS Networking & Content Delivery",
+    "priority1": [
+      {
+        "topic": "VPC Architecture",
+        "importance": "Appeared in 5 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Public and Private Subnets",
+        "importance": "Repeated across papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Route Tables and Internet Gateway",
+        "importance": "Repeated VPC architecture questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "NAT Gateway",
+        "importance": "Repeated VPC architecture questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Security Groups vs NACL",
+        "importance": "Direct comparison / design questions",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "VPC Peering",
+        "importance": "Appeared in VPC connectivity scenario",
+        "priority": "High"
+      },
+      {
+        "topic": "AWS Direct Connect",
+        "importance": "Part of networking syllabus",
+        "priority": "Medium"
+      },
+      {
+        "topic": "Amazon CloudFront",
+        "importance": "Appeared in global architecture question",
+        "priority": "High"
+      }
+    ]
+  },
+  {
+    "id": "m4",
+    "title": "AWS Database Services",
+    "priority1": [
+      {
+        "topic": "RDS Multi-AZ Deployment",
+        "importance": "Appeared in 4 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "RDS Read Replicas",
+        "importance": "Appeared in 4 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Multi-AZ vs Read Replicas",
+        "importance": "Repeated architecture and comparison questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Amazon Aurora",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Amazon DynamoDB",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "Aurora vs DynamoDB",
+        "importance": "Direct database selection question",
+        "priority": "High"
+      },
+      {
+        "topic": "DynamoDB Streams",
+        "importance": "Syllabus topic; no clear standalone question",
+        "priority": "Medium"
+      },
+      {
+        "topic": "RDS High Availability and Read Scalability",
+        "importance": "Repeated scenario-based questions",
+        "priority": "High"
+      }
+    ]
+  },
+  {
+    "id": "m5",
+    "title": "AWS Management Tools & Cost Management",
+    "priority1": [
+      {
+        "topic": "AWS CloudWatch",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS CloudTrail",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Config",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Budgets",
+        "importance": "Appeared in 2 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Trusted Advisor",
+        "importance": "Appeared in 2 papers",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "AWS Systems Manager",
+        "importance": "Appeared in 2 papers",
+        "priority": "High"
+      },
+      {
+        "topic": "Cost Monitoring and Alerts",
+        "importance": "Repeated scenario-based questions",
+        "priority": "High"
+      },
+      {
+        "topic": "AWS Free Tier",
+        "importance": "Appeared in A2",
+        "priority": "Medium"
+      },
+      {
+        "topic": "AWS Billing and Account Management",
+        "importance": "Related to budget management",
+        "priority": "Medium"
+      }
+    ]
+  },
+  {
+    "id": "m6",
+    "title": "AWS Security & Compliance",
+    "priority1": [
+      {
+        "topic": "AWS WAF",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Shield",
+        "importance": "Appeared in 3 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS KMS",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "DDoS Protection",
+        "importance": "Repeated Shield-related questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "SQL Injection and XSS Protection",
+        "importance": "Direct WAF scenario questions",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "Encryption at Rest and in Transit",
+        "importance": "Appeared in security scenarios",
+        "priority": "High"
+      },
+      {
+        "topic": "Shared Responsibility Model",
+        "importance": "Repeated across papers",
+        "priority": "High"
+      },
+      {
+        "topic": "AWS Security Best Practices",
+        "importance": "Integrated security questions",
+        "priority": "High"
+      }
+    ]
+  },
+  {
+    "id": "m7",
+    "title": "AWS Application Integration & Architectural Best Practices",
+    "priority1": [
+      {
+        "topic": "AWS Step Functions",
+        "importance": "Appeared in 4 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Amazon SQS",
+        "importance": "Appeared in 2 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Amazon SNS",
+        "importance": "Appeared in 2 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Amazon SWF",
+        "importance": "Direct comparison question",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Well-Architected Framework",
+        "importance": "Appeared in 2 papers",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "High Availability & Fault Tolerance",
+        "importance": "Repeated in architecture questions",
+        "priority": "High"
+      },
+      {
+        "topic": "Scalability & Elasticity",
+        "importance": "Repeated in architecture questions",
+        "priority": "High"
+      },
+      {
+        "topic": "Cost Optimization",
+        "importance": "Multiple scenario-based questions",
+        "priority": "High"
+      },
+      {
+        "topic": "AWS Architecture Design Principles",
+        "importance": "Integrated architecture questions",
+        "priority": "High"
+      }
+    ]
+  },
+  {
+    "id": "m8",
+    "title": "AWS Migration & Hybrid Architecture",
+    "priority1": [
+      {
+        "topic": "AWS DMS",
+        "importance": "Appeared in 4 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS SMS",
+        "importance": "Appeared in 3 papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Snowball Edge",
+        "importance": "Appeared in multiple papers",
+        "priority": "Very High"
+      },
+      {
+        "topic": "AWS Snowball",
+        "importance": "Repeated migration scenarios",
+        "priority": "Very High"
+      }
+    ],
+    "priority2": [
+      {
+        "topic": "AWS Snowmobile",
+        "importance": "Appeared in comparison questions",
+        "priority": "High"
+      },
+      {
+        "topic": "Snowball vs Snowball Edge vs Snowmobile",
+        "importance": "Direct comparison questions",
+        "priority": "Very High"
+      },
+      {
+        "topic": "Database Migration – Minimal Downtime",
+        "importance": "Repeated DMS scenarios",
+        "priority": "High"
+      },
+      {
+        "topic": "Hybrid Cloud Architecture",
+        "importance": "Appeared in connectivity and migration scenarios",
+        "priority": "High"
+      }
+    ]
+  }
+]
