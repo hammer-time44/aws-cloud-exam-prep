@@ -137,3 +137,33 @@ a.mchip:hover { border-color: var(--accent); color: var(--accent); }
 }
 
 code { background: var(--hover); padding: 1px 6px; border-radius: 6px; font-size: 13px; }
+
+/* marks distribution */
+.tab-marks { margin-left: 8px; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.tab[aria-selected="true"] .tab-marks { color: var(--fg); border-color: var(--fg); }
+.marks { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px 8px; margin-bottom: 16px; }
+.marks-head { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 8px; }
+.marks-grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; }
+.mk { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--muted); font-size: 12px; }
+.mk b { font-weight: 600; }
+.mk span { font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--fg); }
+.mk.big { background: var(--p1-bg); border-color: transparent; color: var(--p1-fg); }
+.mk.big span { color: var(--p1-fg); }
+.mk:hover { border-color: var(--accent); }
+.mk.on { border-color: var(--fg); }
+.marks-note { margin: 8px 0 2px; font-size: 13px; color: var(--muted); }
+.marks-pill { color: var(--fg); border-color: var(--fg); font-weight: 600; }
+.marks-pill.big { color: var(--p1-fg); border-color: var(--p1-fg); }
+@media (max-width: 560px) { .marks-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* imp button (right of the module tabs) and imp page */
+.tabs-row { display: flex; align-items: flex-start; gap: 10px; }
+.tabs-row[hidden] { display: none; }
+.tabs-row .tabs { flex: 1; min-width: 0; }
+.imp-btn {
+  flex: none; font-family: var(--font-hand); font-size: 20px; line-height: 1; font-weight: 600;
+  background: none; border: 1.5px solid var(--fg); border-radius: 12px; padding: 7px 16px; cursor: pointer;
+}
+.imp-btn:hover { background: var(--hover); }
+.imp-shot { display: block; margin-top: 12px; max-width: 680px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.imp-shot img { display: block; width: 100%; height: auto; }

@@ -7,6 +7,8 @@ const bodyEl = document.getElementById("body");
 const titleEl = document.getElementById("title");
 const backEl = document.getElementById("back");
 const fatEl = document.getElementById("fatBtn");
+const impEl = document.getElementById("impBtn");
+const tabsRowEl = document.getElementById("tabsRow");
 const scrollEl = document.getElementById("scroll");
 const themeBtn = document.getElementById("theme");
 const q = document.getElementById("q");
@@ -42,12 +44,24 @@ function filterTopics(rows, term) {
   if (!term) return rows;
   return rows.filter((r) => (r.topic + " " + r.importance + " " + r.priority).toLowerCase().includes(term));
 }
+function marksStrip() {
+  if (!MODS.some((x) => x.marks)) return "";
+  const big = MODS.filter((x) => x.marks >= 20);
+  let h = '<div class="marks" aria-label="Marks distribution"><div class="marks-head">Marks distribution</div><div class="marks-grid">';
+  MODS.forEach((x, i) => {
+    h += '<a class="mk' + (x.marks >= 20 ? " big" : "") + (i === cur ? " on" : "") + '" href="#' + x.id + '" data-go="' + x.id + '" title="' + esc(x.title) + '"><b>' + x.id.toUpperCase() + "</b><span>" + x.marks + "</span></a>";
+  });
+  h += "</div>";
+  if (big.length) h += '<p class="marks-note">Modules ' + big.map((x) => x.id.slice(1)).join(", ") + " carry 20 marks, the rest carry 10. Any 2 of the 20-mark modules will have a choice.</p>";
+  return h + "</div>";
+}
 function renderCloud(term) {
   const m = MODS[cur];
   const a = filterTopics(m.priority1, term);
   const b = filterTopics(m.priority2, term);
-  let h = "<h1>" + m.id.toUpperCase() + " – " + esc(m.title) + "</h1>";
-  h += '<div class="stat"><span class="pill">' + m.priority1.length + ' must prepare</span><span class="pill">' + m.priority2.length + " important</span></div>";
+  let h = marksStrip();
+  h += "<h1>" + m.id.toUpperCase() + " – " + esc(m.title) + "</h1>";
+  h += '<div class="stat">' + (m.marks ? '<span class="pill marks-pill' + (m.marks >= 20 ? " big" : "") + '">' + m.marks + " marks</span>" : "") + '<span class="pill">' + m.priority1.length + ' must prepare</span><span class="pill">' + m.priority2.length + " important</span></div>";
   if (a.length) h += '<span class="chip p1">Priority 1 – Must prepare</span>' + topicTable(a);
   if (b.length) h += '<span class="chip p2">Priority 2 – Important</span>' + topicTable(b);
   if (!a.length && !b.length) h += '<p class="none">No topics in ' + m.id.toUpperCase() + " match “" + esc(q.value.trim()) + "”.</p>";
@@ -95,6 +109,13 @@ function renderFat(term) {
   Array.from(tabsEl.children).forEach((t, i) => t.setAttribute("aria-selected", i === curP ? "true" : "false"));
 }
 
+/* ---------- imp view: handwritten important-topics photo ---------- */
+function renderImp() {
+  bodyEl.innerHTML =
+    '<h1>Important</h1><p class="sub">Handwritten module-wise important topics. Tap the picture to open it full size.</p>' +
+    '<a class="imp-shot" href="imp.png" target="_blank" rel="noopener"><img src="imp.png" alt="Handwritten notes of important topics for modules M1 to M8"></a>';
+}
+
 /* ---------- shell: tabs, routing, render ---------- */
 function buildTabs() {
   tabsEl.innerHTML = "";
@@ -106,26 +127,42 @@ function buildTabs() {
     t.type = "button";
     t.setAttribute("role", "tab");
     t.textContent = label;
+    const mod = view === "fat" ? null : MODS.find((x) => x.id === label);
+    if (mod && mod.marks) {
+      const sm = document.createElement("small");
+      sm.className = "tab-marks";
+      sm.textContent = mod.marks;
+      sm.title = mod.marks + " marks";
+      t.appendChild(sm);
+    }
     t.onclick = () => go(view === "fat" ? "fat-" + label.toLowerCase() : label);
     tabsEl.appendChild(t);
   });
 }
 function render() {
   const term = q.value.trim().toLowerCase();
-  if (builtView !== view) {
+  if (view !== "imp" && builtView !== view) {
     buildTabs();
     builtView = view;
   }
-  titleEl.textContent = view === "fat" ? "fat" : "cloud";
-  backEl.hidden = view !== "fat";
-  fatEl.hidden = view === "fat";
+  titleEl.textContent = view === "fat" ? "fat" : view === "imp" ? "imp" : "cloud";
+  backEl.hidden = view === "cloud";
+  fatEl.hidden = view !== "cloud";
+  impEl.hidden = view !== "cloud";
+  tabsRowEl.hidden = view === "imp";
+  if (view === "imp") {
+    q.placeholder = "Search is available on the cloud and fat pages";
+    return renderImp();
+  }
   q.placeholder = view === "fat" ? "Search questions in this paper, e.g. VPC, DMS, WAF" : "Search topics in this module, e.g. VPC, Aurora, KMS";
   if (view === "fat") renderFat(term);
   else renderCloud(term);
 }
 function parse(hash) {
   const h = (hash || "").replace("#", "").toLowerCase();
-  if (h.startsWith("fat")) {
+  if (h === "imp") {
+    view = "imp";
+  } else if (h.startsWith("fat")) {
     view = "fat";
     const id = h.split("-")[1];
     const i = PAPERS.findIndex((p) => p.id.toLowerCase() === id);
@@ -177,7 +214,8 @@ async function init() {
     q.focus();
   };
   fatEl.onclick = () => go("fat-a1");
-  backEl.onclick = () => go("m1");
+  impEl.onclick = () => go("imp");
+  backEl.onclick = () => go(view === "imp" && MODS[cur] ? MODS[cur].id : "m1");
   bodyEl.addEventListener("click", (e) => {
     const a = e.target.closest ? e.target.closest("a[data-go]") : null;
     if (a) {

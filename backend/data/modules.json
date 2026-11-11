@@ -2,6 +2,7 @@
   {
     "id": "m1",
     "title": "AWS Cloud Foundations & IAM",
+    "marks": 10,
     "priority1": [
       {
         "topic": "IAM Users, Groups and Policies",
@@ -40,6 +41,7 @@
   {
     "id": "m2",
     "title": "AWS Compute & Storage Services",
+    "marks": 20,
     "priority1": [
       {
         "topic": "Amazon EC2 – Instance Types and Lifecycle",
@@ -93,6 +95,7 @@
   {
     "id": "m3",
     "title": "AWS Networking & Content Delivery",
+    "marks": 10,
     "priority1": [
       {
         "topic": "VPC Architecture",
@@ -141,6 +144,7 @@
   {
     "id": "m4",
     "title": "AWS Database Services",
+    "marks": 10,
     "priority1": [
       {
         "topic": "RDS Multi-AZ Deployment",
@@ -189,6 +193,7 @@
   {
     "id": "m5",
     "title": "AWS Management Tools & Cost Management",
+    "marks": 20,
     "priority1": [
       {
         "topic": "AWS CloudWatch",
@@ -242,6 +247,7 @@
   {
     "id": "m6",
     "title": "AWS Security & Compliance",
+    "marks": 10,
     "priority1": [
       {
         "topic": "AWS WAF",
@@ -290,6 +296,7 @@
   {
     "id": "m7",
     "title": "AWS Application Integration & Architectural Best Practices",
+    "marks": 20,
     "priority1": [
       {
         "topic": "AWS Step Functions",
@@ -343,6 +350,7 @@
   {
     "id": "m8",
     "title": "AWS Migration & Hybrid Architecture",
+    "marks": 20,
     "priority1": [
       {
         "topic": "AWS DMS",
