@@ -8,10 +8,16 @@ const titleEl = document.getElementById("title");
 const backEl = document.getElementById("back");
 const fatEl = document.getElementById("fatBtn");
 const impEl = document.getElementById("impBtn");
+const heroEl = document.getElementById("hero");
 const tabsRowEl = document.getElementById("tabsRow");
 const scrollEl = document.getElementById("scroll");
 const themeBtn = document.getElementById("theme");
 const q = document.getElementById("q");
+const countEl = document.getElementById("count");
+function setCount(n, term) {
+  countEl.hidden = !term;
+  countEl.textContent = n + (n === 1 ? " result" : " results");
+}
 
 let MODS = [];
 let PAPERS = [];
@@ -34,11 +40,11 @@ function moduleTitle(id) {
 
 /* ---------- cloud view ---------- */
 function topicTable(rows) {
-  let h = '<div class="tbl"><table><thead><tr><th>Topic</th><th>PYQ importance</th><th>Priority</th></tr></thead><tbody>';
+  let h = '<div class="tg">';
   rows.forEach((r) => {
-    h += "<tr><td>" + esc(r.topic) + "</td><td>" + esc(r.importance) + '</td><td class="pr ' + priorityClass(r.priority) + '">' + esc(r.priority) + "</td></tr>";
+    h += '<article class="tc"><span class="pr ' + priorityClass(r.priority) + '">' + esc(r.priority) + "</span><h3 class=\"tc-t\">" + esc(r.topic) + '</h3><p class="tc-i">' + esc(r.importance) + "</p></article>";
   });
-  return h + "</tbody></table></div>";
+  return h + "</div>";
 }
 function filterTopics(rows, term) {
   if (!term) return rows;
@@ -56,6 +62,7 @@ function marksStrip() {
   return h + "</div>";
 }
 function renderCloud(term) {
+  delete bodyEl.dataset.paper;
   const m = MODS[cur];
   const a = filterTopics(m.priority1, term);
   const b = filterTopics(m.priority2, term);
@@ -65,8 +72,9 @@ function renderCloud(term) {
   if (a.length) h += '<span class="chip p1">Priority 1 – Must prepare</span>' + topicTable(a);
   if (b.length) h += '<span class="chip p2">Priority 2 – Important</span>' + topicTable(b);
   if (!a.length && !b.length) h += '<p class="none">No topics in ' + m.id.toUpperCase() + " match “" + esc(q.value.trim()) + "”.</p>";
+  setCount(a.length + b.length, term);
   bodyEl.innerHTML = h;
-  Array.from(tabsEl.children).forEach((t, i) => t.setAttribute("aria-selected", i === cur ? "true" : "false"));
+  Array.from(tabsEl.children).forEach((t, i) => { t.setAttribute("aria-selected", i === cur ? "true" : "false"); if (i === cur && t.scrollIntoView) t.scrollIntoView({ inline: "center", block: "nearest" }); });
 }
 
 /* ---------- FAT view ---------- */
@@ -75,6 +83,12 @@ function questionText(question) {
     .map((p) => [p.text, p.co, p.bl, p.modules.join(" ")].join(" "))
     .join(" ")
     .toLowerCase();
+}
+function matchQuestion(question, term) {
+  const m = term.match(/^q\.?\s*(\d+)$/);
+  if (m) return question.number === Number(m[1]);
+  if (/^\d+$/.test(term) && question.number === Number(term)) return true;
+  return questionText(question).includes(term);
 }
 function partHtml(p) {
   let h = '<div class="part"><p>' + (p.label ? '<span class="pl">' + esc(p.label) + "</span>" : "") + esc(p.text) + '</p><div class="meta">';
@@ -87,13 +101,14 @@ function partHtml(p) {
 }
 function renderFat(term) {
   const p = PAPERS[curP];
+  bodyEl.dataset.paper = p.id.toLowerCase();
   let h = "<h1>" + esc(p.id) + " – Final Assessment Test, " + esc(p.exam) + "</h1>";
   h += '<p class="sub">' + esc(p.course) + " · Slot " + esc(p.slot) + " · Three hours</p>";
   h += '<div class="stat"><span class="pill">' + p.questions.length + ' questions</span><span class="pill">10 × 10 = 100 marks</span><span class="pill">Answer all questions</span></div>';
   let list = "";
   let shown = 0;
   p.questions.forEach((question) => {
-    if (term && !questionText(question).includes(term)) return;
+    if (term && !matchQuestion(question, term)) return;
     shown++;
     list += '<li class="q"><span class="qn">' + question.number + '</span><div class="qb">';
     question.parts.forEach((part, j) => {
@@ -105,8 +120,9 @@ function renderFat(term) {
   if (shown) h += '<ol class="qs">' + list + "</ol>";
   else h += '<p class="none">No questions in ' + esc(p.id) + " match “" + esc(q.value.trim()) + "”.</p>";
   if (p.id === "F1") h += '<p class="note">F1 does not print CO or BL levels on the paper. Module tags are matched by topic.</p>';
+  setCount(shown, term);
   bodyEl.innerHTML = h;
-  Array.from(tabsEl.children).forEach((t, i) => t.setAttribute("aria-selected", i === curP ? "true" : "false"));
+  Array.from(tabsEl.children).forEach((t, i) => { t.setAttribute("aria-selected", i === curP ? "true" : "false"); if (i === curP && t.scrollIntoView) t.scrollIntoView({ inline: "center", block: "nearest" }); });
 }
 
 /* ---------- imp view: handwritten important-topics photo ---------- */
@@ -127,6 +143,7 @@ function buildTabs() {
     t.type = "button";
     t.setAttribute("role", "tab");
     t.textContent = label;
+    if (view === "fat") t.dataset.paper = label.toLowerCase();
     const mod = view === "fat" ? null : MODS.find((x) => x.id === label);
     if (mod && mod.marks) {
       const sm = document.createElement("small");
@@ -146,15 +163,17 @@ function render() {
     builtView = view;
   }
   titleEl.textContent = view === "fat" ? "fat" : view === "imp" ? "imp" : "cloud";
+  heroEl.hidden = view !== "cloud";
   backEl.hidden = view === "cloud";
   fatEl.hidden = view !== "cloud";
   impEl.hidden = view !== "cloud";
   tabsRowEl.hidden = view === "imp";
   if (view === "imp") {
+    countEl.hidden = true;
     q.placeholder = "Search is available on the cloud and fat pages";
     return renderImp();
   }
-  q.placeholder = view === "fat" ? "Search questions in this paper, e.g. VPC, DMS, WAF" : "Search topics in this module, e.g. VPC, Aurora, KMS";
+  q.placeholder = view === "fat" ? "Search by question no. (Q5) or text, e.g. VPC, DMS, WAF" : "Search topics in this module, e.g. VPC, Aurora, KMS";
   if (view === "fat") renderFat(term);
   else renderCloud(term);
 }
@@ -189,8 +208,7 @@ const SUN = '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke=
 const MOON = '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 function setTheme(t) {
   const root = document.documentElement;
-  if (t === "light") root.setAttribute("data-theme", "light");
-  else root.removeAttribute("data-theme");
+  root.setAttribute("data-theme", t === "light" ? "light" : "dark");
   themeBtn.innerHTML = t === "light" ? MOON : SUN;
   themeBtn.setAttribute("aria-label", t === "light" ? "Switch to dark mode" : "Switch to light mode");
   try {
@@ -200,9 +218,9 @@ function setTheme(t) {
 
 /* ---------- start ---------- */
 async function init() {
-  let saved = "dark";
+  let saved = "light";
   try {
-    saved = localStorage.getItem("cloud-theme") || "dark";
+    saved = localStorage.getItem("cloud-theme") || "light";
   } catch (e) {}
   setTheme(saved === "light" ? "light" : "dark");
 
@@ -213,6 +231,11 @@ async function init() {
     render();
     q.focus();
   };
+  document.addEventListener("keydown", (e) => {
+    const typing = /^(INPUT|TEXTAREA)$/.test((document.activeElement || {}).tagName || "");
+    if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey) { e.preventDefault(); q.focus(); }
+    else if (e.key === "Escape" && document.activeElement === q) { q.value = ""; render(); q.blur(); }
+  });
   fatEl.onclick = () => go("fat-a1");
   impEl.onclick = () => go("imp");
   backEl.onclick = () => go(view === "imp" && MODS[cur] ? MODS[cur].id : "m1");
@@ -223,6 +246,10 @@ async function init() {
       go(a.getAttribute("data-go"));
     }
   });
+  document.addEventListener("pointermove", (e) => {
+    const c = e.target.closest ? e.target.closest(".tc, .q, .mk") : null;
+    if (c) { const r = c.getBoundingClientRect(); c.style.setProperty("--mx", e.clientX - r.left + "px"); c.style.setProperty("--my", e.clientY - r.top + "px"); }
+  });
   window.addEventListener("hashchange", () => {
     if (!MODS.length) return;
     parse(location.hash);
@@ -232,7 +259,7 @@ async function init() {
   try {
     [MODS, PAPERS] = await Promise.all([Api.modules(), Api.papers()]);
   } catch (e) {
-    bodyEl.innerHTML = '<p class="none">Could not load data from the backend. Start it with <code>npm start</code> and open <code>http://localhost:3000</code>.</p>';
+    bodyEl.innerHTML = '<p class="none err">Could not load data from the backend. Start it with <code>npm start</code> and open <code>http://localhost:3000</code>.</p>';
     return;
   }
   parse(location.hash);

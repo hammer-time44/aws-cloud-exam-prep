@@ -3,10 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f2f0">
   <title>AWS Cloud Computing: Module-wise PYQ Priority Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a class="skip" href="#body">Skip to content</a>
   <div class="app">
     <main class="main">
       <div class="top">
@@ -17,6 +22,7 @@
 
       <div class="scroll" id="scroll">
         <div class="col">
+          <header class="hero" id="hero"><span class="eyebrow"><i></i>BCSE355L · Cloud Architecture Design</span></header>
           <section class="cloud" aria-label="cloud">
             <div class="cloud-head">
               <div class="hd-l"><button class="back-btn" id="back" type="button" hidden>
@@ -29,7 +35,7 @@
               <div class="tabs" id="tabs" role="tablist"></div>
               <button class="imp-btn" id="impBtn" type="button" aria-label="Open important notice">imp</button>
             </div>
-            <div class="body" id="body" role="tabpanel"><p class="none">Loading&hellip;</p></div>
+            <div class="body" id="body" role="tabpanel"><div class="skel" aria-busy="true" aria-label="Loading"><i></i><i></i><i></i><i></i></div></div>
           </section>
         </div>
       </div>
@@ -37,8 +43,10 @@
       <div class="composer-wrap">
         <label class="composer" for="q">
           <input id="q" type="search" autocomplete="off">
+          <span class="kbd" aria-hidden="true">/</span>
+          <span class="count" id="count" hidden></span>
           <button class="send" type="button" id="clear" aria-label="Clear search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
           </button>
         </label>
       </div>
